@@ -9,18 +9,47 @@ function computerPlay() {
   else { return "Scissors"; }
 }
 
-function playRPS(playerSelection, computerSelection) {
-  // turn both arguments into lowercase
-  // if player is === computerselection result = draw
-  // else if player is rock,
-  //  if computer is scissors, result = win
-  // else if player is paper, check computer
-  //  if computer is rock, result = win
-  // else if player is scissors, 
-  //  if computer is paper, result = win
-  // else print wrong input msg
-  // 
-  // if result = win print win msg
-  // else print lose msg
-  // 
+function playRound(playerSelection, computerSelection) {
+  // -- turn first letter of player input into uppercase -- //
+  playerSelection   = playerSelection.toLowerCase();
+  let firstLetter = playerSelection.slice(0, 1);
+  const player = firstLetter.toUpperCase() + playerSelection.substr(1);
+  console.log(player, computerSelection);
+  // -- validates input -- //
+  switch (player) {
+    case "Rock": case "Paper": case "Scissors": break;
+    default: return "ERROR: Incorrect value entered.";
+  }
+
+
+  let result;
+  let winner = player;
+  let loser  = computerSelection;
+  if (player === computerSelection) {
+    result = "Draw";
+  }
+  else if (player === "Rock" && computerSelection === "Scissors") {
+    result = "Win";
+  }
+  else if (player === "Paper" && computerSelection === "Rock") {
+    result = "Win";
+  }
+  else if (player === "Scissors" && computerSelection === "Paper") {
+    result = "Win";
+  } else {
+    result = "Lose";
+    let temp = winner; // swap values
+    winner = loser;
+    loser = temp;
+  }
+
+
+  if (result === "Draw") {
+    return `That's a draw! You both picked ${player}`
+  }
+  return `You ${result}! ${winner} beats ${loser}`
+}
+
+function game() {
+  
 }
