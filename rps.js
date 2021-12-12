@@ -21,28 +21,22 @@ function playRound(playerSelection, computerSelection) {
     default: return "ERROR: Incorrect value entered.";
   }
 
-
   let result;
   let winner = player;
   let loser  = computerSelection;
   if (player === computerSelection) {
     result = "Draw";
   }
-  else if (player === "Rock" && computerSelection === "Scissors") {
-    result = "Win";
-  }
-  else if (player === "Paper" && computerSelection === "Rock") {
-    result = "Win";
-  }
-  else if (player === "Scissors" && computerSelection === "Paper") {
-    result = "Win";
-  } else {
+  else if (player === "Rock" && computerSelection === "Scissors" ||
+           player === "Paper" && computerSelection === "Rock"    ||
+           player === "Scissors" && computerSelection === "Paper")
+          { result = "Win"; }
+  else {
     result = "Lose";
     let temp = winner; // swap values
     winner = loser;
     loser = temp;
   }
-
 
   if (result === "Draw") {
     return `That's a draw! You both picked ${player}`
@@ -55,7 +49,6 @@ function game() {
   let winCount = 0
   let loseCount = 0;
   let result;
-  
 
   while(winCount < 3 && loseCount < 3) {
   result = playRound(prompt(message), computerPlay());
@@ -70,11 +63,8 @@ function game() {
   console.log(`You have ${winCount} wins and ${loseCount} losses`);
   console.log(" ");
   }
-
-
+  
   if (winCount === 3) {
     console.log("You won!");
   } else { console.log("You lost!"); }
 }
-
-game();
