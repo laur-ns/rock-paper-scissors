@@ -11,10 +11,10 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
   // -- turn first letter of player input into uppercase -- //
-  playerSelection   = playerSelection.toLowerCase();
+  if (playerSelection === null) { return null; }
+  playerSelection = playerSelection.toLowerCase();
   let firstLetter = playerSelection.slice(0, 1);
   const player = firstLetter.toUpperCase() + playerSelection.substr(1);
-  console.log(player, computerSelection);
   // -- validates input -- //
   switch (player) {
     case "Rock": case "Paper": case "Scissors": break;
@@ -51,5 +51,30 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+  const message = "Enter rock, paper, or scissors";
+  let winCount = 0
+  let loseCount = 0;
+  let result;
   
+
+  while(winCount < 3 && loseCount < 3) {
+  result = playRound(prompt(message), computerPlay());
+  if (result === null) { return; }
+  if (result.slice(4, 7) === "Win") {
+    winCount++;
+  }
+  else if (result.slice(4, 8) === "Lose") {
+    loseCount ++;
+  }
+  console.log(result);
+  console.log(`You have ${winCount} wins and ${loseCount} losses`);
+  console.log(" ");
+  }
+
+
+  if (winCount === 3) {
+    console.log("You won!");
+  } else { console.log("You lost!"); }
 }
+
+game();
