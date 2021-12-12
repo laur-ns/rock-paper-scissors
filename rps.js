@@ -51,7 +51,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  const message = "Enter rock, paper, or scissors";
+  const message = "Enter Rock, Paper, or Scissors (output in console)";
   let winCount = 0
   let loseCount = 0;
   let result;
