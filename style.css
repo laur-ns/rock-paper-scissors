@@ -1,0 +1,18 @@
+html, body {
+  font-family: 'Roboto Mono', monospace;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+
+}
+button {
+  font-weight: bold;
+  font-size: 3vw;
+  width: 20vw;
+  height: 15vw;
+}
