@@ -3,7 +3,7 @@
   <head>
     <title>Rock-Paper-Scissors</title>
     <meta charset="utf-8">
-    <script src="rps.js"></script>
+    <script src="rps.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,13 @@
   </head>
 
   <body>
+    <div class='resultBox'>
+      <span>CLICK A BUTTON TO BEGIN</span>
+      <div class='counterWrapper'>
+        <p class='win'><u>Wins</u><br>0</p>
+        <p class='lose'><u>Losses</u><br>0</p>
+      </div>
+    </div>
     <div class='container'>
       <button id='Rock'>ROCK</button>
       <button id='Paper'>PAPER</button>
@@ -21,3 +28,4 @@
     </div>
   </body>
 </html>
+
