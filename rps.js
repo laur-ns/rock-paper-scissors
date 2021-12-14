@@ -50,6 +50,7 @@ function game() {
   let loseCount = 0;
   let result;
 
+  while(winCount < 3 && loseCount < 3) {
   result = playRound(prompt(message), computerPlay());
   if (result === null) { return; }
   if (result.slice(4, 7) === "Win") {
@@ -61,6 +62,7 @@ function game() {
   console.log(result);
   console.log(`You have ${winCount} wins and ${loseCount} losses`);
   console.log(" ");
+  }
   
   if (winCount === 3) {
     console.log("You won!");
