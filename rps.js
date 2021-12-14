@@ -9,62 +9,50 @@ function computerPlay() {
   else { return "Scissors"; }
 }
 
-function playRound(playerSelection, computerSelection) {
-  // -- turn first letter of player input into uppercase -- //
-  if (playerSelection === null) { return null; }
-  playerSelection = playerSelection.toLowerCase();
-  let firstLetter = playerSelection.slice(0, 1);
-  const player = firstLetter.toUpperCase() + playerSelection.substr(1);
-  // -- validates input -- //
-  switch (player) {
-    case "Rock": case "Paper": case "Scissors": break;
-    default: return "ERROR: Incorrect value entered.";
+function playRound(player, computer) {
+  if (player === computer) {
+    title.textContent = `That's a draw. You both picked ${player}!`;
+    console.log(player);
+    console.log(computer);
+    return "Draw";
   }
-
-  let result;
-  let winner = player;
-  let loser  = computerSelection;
-  if (player === computerSelection) {
-    result = "Draw";
-  }
-  else if (player === "Rock" && computerSelection === "Scissors" ||
-           player === "Paper" && computerSelection === "Rock"    ||
-           player === "Scissors" && computerSelection === "Paper")
-          { result = "Win"; }
+  else if (player === "Rock" && computer === "Scissors" ||
+           player === "Paper" && computer === "Rock"    ||
+           player === "Scissors" && computer === "Paper")
+          { title.textContent = `You won this round. ${player} beats ${computer}!`;
+            return "Win"; }
   else {
-    result = "Lose";
-    let temp = winner; // swap values
-    winner = loser;
-    loser = temp;
+    title.textContent = `You lost this round. ${computer} beats ${player}!`;
+    return "Lose";
   }
-
-  if (result === "Draw") {
-    return `That's a draw! You both picked ${player}`
-  }
-  return `You ${result}! ${winner} beats ${loser}`
 }
 
+const winText = document.querySelector('div .win');
+const loseText = document.querySelector('div .lose');
+const title = document.querySelector('span');
+
+let winCount = 0;
+let loseCount = 0;
 function game() {
-  const message = "Enter Rock, Paper, or Scissors (output in console)";
-  let winCount = 0
-  let loseCount = 0;
-  let result;
-
-  while(winCount < 3 && loseCount < 3) {
-  result = playRound(prompt(message), computerPlay());
-  if (result === null) { return; }
-  if (result.slice(4, 7) === "Win") {
-    winCount++;
+  let userChoice = this.getAttribute('id');
+  let result = playRound(userChoice, computerPlay());
+  if (result === 'Win') { winCount++; }
+  if (result === 'Lose') { loseCount++; }
+  winText.innerHTML = `<u>Wins</u><br>${winCount}`;
+  loseText.innerHTML = `<u>Losses</u><br>${loseCount}`;
+  if (winCount == 3) {
+    title.innerHTML = `<u>You won! Click a button to start again.</u>`;
+    winCount = 0; loseCount = 0;
   }
-  else if (result.slice(4, 8) === "Lose") {
-    loseCount ++;
+  if (loseCount == 3) {
+    title.innerHTML = `<u>You lost! Click a button to start again.</u>`;
+    winCount = 0; loseCount = 0;
   }
-  console.log(result);
-  console.log(`You have ${winCount} wins and ${loseCount} losses`);
-  console.log(" ");
-  }
-  
-  if (winCount === 3) {
-    console.log("You won!");
-  } else { console.log("You lost!"); }
 }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(e => {
+  e.addEventListener('click', game);
+});
+
+
