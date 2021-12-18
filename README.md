@@ -1,4 +1,5 @@
 # TOP-rock-paper-scissors
-Rock paper scissors project, with loops.
+
+Rock paper scissors project.
 
 [Live demo](https://laur-ns.github.io/TOP-rock-paper-scissors/)
