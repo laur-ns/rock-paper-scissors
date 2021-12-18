@@ -4,6 +4,7 @@ html {
   display: flex;
   justify-content: center;
   background-image: url('./background.avif');
+  background-size: cover;
   align-items: center;
 }
 
