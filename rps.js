@@ -10,10 +10,10 @@ function computerPlay() {
 }
 
 function playRound(player, computer) {
+  console.log(`Player: ${player}`);
+  console.log(`Computer: ${computer}`);
   if (player === computer) {
     title.textContent = `That's a draw. You both picked ${player}!`;
-    console.log(player);
-    console.log(computer);
     return "Draw";
   }
   else if (player === "Rock" && computer === "Scissors" ||
